@@ -100,7 +100,7 @@ button:hover {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 2140px) {
   .container {
     margin-top: 20px;
   }
