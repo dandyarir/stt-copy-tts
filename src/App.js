@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import useClipboard from 'react-use-clipboard';
+import { useSpeechSynthesis } from 'react-speech-kit';
 
 const App = () => {
     const [textToCopy, setTextToCopy] = useState();
@@ -12,6 +12,8 @@ const App = () => {
 
     const startListening = () => SpeechRecognition.startListening({ continuous: true, language: 'en-ID' });
     const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition();
+    const { speak } = useSpeechSynthesis();
+    const startSpeaking = () => speak({ text: transcript });
 
     if (!browserSupportsSpeechRecognition) {
         return null
@@ -33,6 +35,7 @@ const App = () => {
                 </button>
                 <button onClick={startListening}>Start Listening</button>
                 <button onClick={SpeechRecognition.stopListening}>Stop Listening</button>
+                <button onClick={startSpeaking}>Speech</button>
 
             </div>
 
